@@ -5,6 +5,7 @@ $('document').ready(function () {
   const dictAmenities = {};
   $('input[type="checkbox"]').change(function () {
     if ($(this).is(':checked')) {
+      console.log($(this).attr('data-id'));
       dictAmenities[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete dictAmenities[$(this).attr('data-id')];
@@ -59,8 +60,9 @@ $('document').ready(function () {
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json',
-        data: JSON.stringify({'amenities': Object.keys(amenities)}),
+        data: JSON.stringify({'amenities': Object.keys(dictAmenities)}),
         success: function (data) {
+          console.log(data);
           $.each(data, function (idx, place) {
               const markUp = `
                 <article>
