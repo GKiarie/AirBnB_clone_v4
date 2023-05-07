@@ -1,0 +1,62 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'semistandard' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 verbose cache add [ 'semistandard', null ]
+5 verbose cache add name=undefined spec="semistandard" args=["semistandard",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'semistandard',
+6 verbose parsed url   path: 'semistandard',
+6 verbose parsed url   href: 'semistandard' }
+7 silly makeCacheDir cache dir uid, gid [ 0, 0 ]
+8 silly lockFile c221f11d-semistandard semistandard
+9 verbose lock semistandard /root/.npm/c221f11d-semistandard.lock
+10 silly lockFile c221f11d-semistandard semistandard
+11 silly lockFile c221f11d-semistandard semistandard
+12 verbose addNamed [ 'semistandard', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 7b67b5d8-semistandard semistandard@
+15 verbose lock semistandard@ /root/.npm/7b67b5d8-semistandard.lock
+16 silly addNameRange { name: 'semistandard', range: '*', hasData: false }
+17 verbose url raw semistandard
+18 verbose url resolving [ 'https://registry.npmjs.org/', './semistandard' ]
+19 verbose url resolved https://registry.npmjs.org/semistandard
+20 info trying registry request attempt 1 at 15:26:43
+21 http GET https://registry.npmjs.org/semistandard
+22 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+23 info trying registry request attempt 2 at 15:26:53
+24 http GET https://registry.npmjs.org/semistandard
+25 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+26 info trying registry request attempt 3 at 15:27:53
+27 http GET https://registry.npmjs.org/semistandard
+28 silly lockFile 7b67b5d8-semistandard semistandard@
+29 silly lockFile 7b67b5d8-semistandard semistandard@
+30 error Error: CERT_UNTRUSTED
+30 error     at SecurePair.<anonymous> (tls.js:1370:32)
+30 error     at SecurePair.EventEmitter.emit (events.js:92:17)
+30 error     at SecurePair.maybeInitFinished (tls.js:982:10)
+30 error     at CleartextStream.read [as _read] (tls.js:469:13)
+30 error     at CleartextStream.Readable.read (_stream_readable.js:320:10)
+30 error     at EncryptedStream.write [as _write] (tls.js:366:25)
+30 error     at doWrite (_stream_writable.js:223:10)
+30 error     at writeOrBuffer (_stream_writable.js:213:5)
+30 error     at EncryptedStream.Writable.write (_stream_writable.js:180:11)
+30 error     at write (_stream_readable.js:583:24)
+31 error If you need help, you may report this log at:
+31 error     <http://github.com/isaacs/npm/issues>
+31 error or email it to:
+31 error     <npm-@googlegroups.com>
+32 error System Linux 5.3.0-1032-aws
+33 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "semistandard"
+34 error cwd /AirBnB_clone_v4/web_dynamic/static/scripts
+35 error node -v v0.10.25
+36 error npm -v 1.3.10
+37 verbose exit [ 1, true ]
