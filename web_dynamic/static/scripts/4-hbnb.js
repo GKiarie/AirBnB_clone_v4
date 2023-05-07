@@ -57,6 +57,7 @@ $('document').ready(function () {
     $('button').click(function () {
       const data1 = JSON.stringify({'amenities': Object.keys(dictAmenities)});
       console.log(data1);
+      $('section.places').html('');
       $.ajax({
         url: domain + ':5001/api/v1/places_search/',
         type: 'POST',
@@ -80,7 +81,11 @@ $('document').ready(function () {
                     ${place.description}
                 </div>
                 </article>`;
-              $('section.places').append(markUp);
+	      if (idx === 0) {
+                $('section.places').html(markUp);
+	      } else {
+                $('section.places').append(markUp);
+	      }
          });
         console.log(data.length);
        }
