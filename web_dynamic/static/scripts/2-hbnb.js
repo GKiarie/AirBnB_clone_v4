@@ -1,4 +1,4 @@
-//api status indication
+// api status indication
 
 $('document').ready(function () {
   const dictAmenities = {};
@@ -24,4 +24,3 @@ $('document').ready(function () {
     }
   });
 });
-

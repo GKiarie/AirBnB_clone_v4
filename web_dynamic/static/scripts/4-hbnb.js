@@ -1,4 +1,4 @@
-//api status indication
+// api status indication
 
 $('document').ready(function () {
   const domain = 'http://' + window.location.hostname;
@@ -26,7 +26,7 @@ $('document').ready(function () {
     }
   });
 
-    $.ajax({
+  $.ajax({
     url: domain + ':5001/api/v1/places_search/',
     method: 'POST',
     data: '{}',
@@ -34,7 +34,7 @@ $('document').ready(function () {
     dataType: 'json',
     success: function (data) {
       $.each(data, function (idx, place) {
-              const markUp = `
+        const markUp = `
                 <article>
                 <div class="title_box">
                     <h2>${place.name}</h2>
@@ -43,30 +43,30 @@ $('document').ready(function () {
                 <div class="information">
                     <div class="max_guest">${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}</div>
                     <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms !== 1 ? 's' : ''}</div>
-                    <div class="number_bathrooms">${ place.number_bathrooms } Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
+                    <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
                 </div>
                 <div class="description">
                     ${place.description}
                 </div>
                 </article>`;
-              $('section.places').append(markUp);
+        $('section.places').append(markUp);
       });
     }
   });
 
-    $('button').click(function () {
-      const data1 = JSON.stringify({'amenities': Object.keys(dictAmenities)});
-      console.log(data1);
-      $('section.places').html('');
-      $.ajax({
-        url: domain + ':5001/api/v1/places_search/',
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'json',
-        data: data1,
-        success: function (data) {
-          $.each(data, function (idx, place) {
-              const markUp = `
+  $('button').click(function () {
+    const data1 = JSON.stringify({ amenities: Object.keys(dictAmenities) });
+    console.log(data1);
+    $('section.places').html('');
+    $.ajax({
+      url: domain + ':5001/api/v1/places_search/',
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      data: data1,
+      success: function (data) {
+        $.each(data, function (idx, place) {
+          const markUp = `
                 <article>
                 <div class="title_box">
                     <h2>${place.name}</h2>
@@ -75,20 +75,20 @@ $('document').ready(function () {
                 <div class="information">
                     <div class="max_guest">${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}</div>
                     <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms !== 1 ? 's' : ''}</div>
-                    <div class="number_bathrooms">${ place.number_bathrooms } Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
+                    <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
                 </div>
                 <div class="description">
                     ${place.description}
                 </div>
                 </article>`;
 	      if (idx === 0) {
-                $('section.places').html(markUp);
+            $('section.places').html(markUp);
 	      } else {
-                $('section.places').append(markUp);
+            $('section.places').append(markUp);
 	      }
-         });
+        });
         console.log(data.length);
-       }
-     });
-});
+      }
+    });
+  });
 });

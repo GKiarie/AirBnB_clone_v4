@@ -1,4 +1,4 @@
-//api status indication
+// api status indication
 
 $('document').ready(function () {
   const dictAmenities = {};
@@ -24,7 +24,7 @@ $('document').ready(function () {
     }
   });
 
-    $.ajax({
+  $.ajax({
     url: 'http://24272da151a2.115532cb.alx-cod.online:5001/api/v1/places_search/',
     method: 'POST',
     data: '{}',
@@ -32,7 +32,7 @@ $('document').ready(function () {
     dataType: 'json',
     success: function (data) {
       $.each(data, function (idx, place) {
-              const markUp = `
+        const markUp = `
                 <article>
                 <div class="title_box">
                     <h2>${place.name}</h2>
@@ -41,15 +41,14 @@ $('document').ready(function () {
                 <div class="information">
                     <div class="max_guest">${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}</div>
                     <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms !== 1 ? 's' : ''}</div>
-                    <div class="number_bathrooms">${ place.number_bathrooms } Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
+                    <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
                 </div>
                 <div class="description">
                     ${place.description}
                 </div>
                 </article>`;
-              $('section.places').append(markUp);
+        $('section.places').append(markUp);
       });
     }
   });
-
 });
