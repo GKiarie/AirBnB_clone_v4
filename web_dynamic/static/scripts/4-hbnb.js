@@ -55,15 +55,15 @@ $('document').ready(function () {
   });
 
     $('button').click(function () {
-      const data = JSON.stringify({'amenities': Object.keys(dictAmenities)});
+      const data1 = JSON.stringify({'amenities': Object.keys(dictAmenities)});
+      console.log(data1);
       $.ajax({
         url: domain + ':5001/api/v1/places_search/',
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json',
-        data: data,
+        data: data1,
         success: function (data) {
-          console.log(data);
           $.each(data, function (idx, place) {
               const markUp = `
                 <article>
@@ -82,6 +82,7 @@ $('document').ready(function () {
                 </article>`;
               $('section.places').append(markUp);
          });
+        console.log(data.length);
        }
      });
 });
