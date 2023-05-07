@@ -55,12 +55,13 @@ $('document').ready(function () {
   });
 
     $('button').click(function () {
+      const data = JSON.stringify({'amenities': Object.keys(dictAmenities)});
       $.ajax({
         url: domain + ':5001/api/v1/places_search/',
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json',
-        data: JSON.stringify({'amenities': Object.keys(dictAmenities)}),
+        data: data,
         success: function (data) {
           console.log(data);
           $.each(data, function (idx, place) {
