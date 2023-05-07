@@ -81,11 +81,11 @@ $('document').ready(function () {
                     ${place.description}
                 </div>
                 </article>`;
-	      if (idx === 0) {
+          if (idx === 0) {
             $('section.places').html(markUp);
-	      } else {
+          } else {
             $('section.places').append(markUp);
-	      }
+          }
         });
         console.log(data.length);
       }
