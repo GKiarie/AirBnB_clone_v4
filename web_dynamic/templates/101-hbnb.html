@@ -6,10 +6,10 @@
     <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}">
     <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{ cache_id }}">
     <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{ cache_id }}">
-    <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}">
+    <link type="text/css" rel="stylesheet" href="../static/styles/100-places.css?{{ cache_id }}">
     <link rel="icon" href="../static/images/icon.png?{{ cache_id }}" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../static/scripts/100-hbnb.js?{{ cache_id }}"></script>
+    <script src="../static/scripts/101-hbnb.js?{{ cache_id }}"></script>
     <title>HBnB</title>
   </head>
   <body>
@@ -26,14 +26,13 @@
 	    <ul>
 	      {% for state in states %}
 	      <li>
-                <input type="checkbox" data-id={{ state.id }}
-                 data-name={{ state.name }}>
-		<h2>{{ state[0].name }}:</h2>
+		<h2>
+                <input type="checkbox" data-id={{ state[0].id }} data-name={{ state[0].name }}>
+		{{ state[0].name }}:</h2>
 		<ul>
 		  {% for city in state[1] %}
 		  <li>
-                    <input type="checkbox" data-id={{ state.id }}
-                     data-name={{ state.name }}>
+                    <input class="ctBox" type="checkbox" data-id={{ city.id }} data-name={{ city.name }}>
 		    {{ city.name }}
 		  </li>
 		  {% endfor %}
@@ -57,7 +56,7 @@
 	    </ul>
 	  </div>
 	</div>
-	<button type="button">Search</button>
+	<button class="search"type="button">Search</button>
       </section>
       <div class="placesh1"><h1>Places</h1></div>
       <section class="places">
