@@ -65,6 +65,7 @@ $('document').ready(function () {
     dataType: 'json',
     success: function (data) {
       $.each(data, function (idx, place) {
+	const placeId = place.id;
 //	console.log('Place:\n\n:');
 	console.log(place.id + ' : ' + place.name);
         const markUp = `
@@ -82,11 +83,14 @@ $('document').ready(function () {
                     ${place.description}
                 </div>
 		<div class="reviews">
+			<span>Show</span>
                         <h2>Reviews</h2>
-			<span><button class="show-button">Show</button></span>
+			<ul></ul>
 		</div>
                 </article>`;
         $('section.places').append(markUp);
+	$('.reviews').find('span').attr('data-id', placeId);
+	
       });
     }
   });
@@ -107,6 +111,7 @@ $('document').ready(function () {
       data: data1,
       success: function (data) {
         $.each(data, function (idx, place) {
+	  const placeId = place.id;
           const markUp = `
                 <article>
                 <div class="title_box">
@@ -123,7 +128,8 @@ $('document').ready(function () {
                 </div>
 		<div class="reviews">
                    <h2>Reviews</h2>
-		   <span><button class="show-button">Show</button></span>
+		   <span>Show</span>
+		   <ul></ul>
                 </div>
                 </article>`;
           if (idx === 0) {
@@ -131,50 +137,42 @@ $('document').ready(function () {
           } else {
             $('section.places').append(markUp);
           }
+	  $('.reviews').find('span').attr('data-id', placeId);
         });
 //        console.log(data.length);
       }
     });
   });
 
-  $('.places').on('click', '.show-button', function() {
+  $('.places').on('click', 'span', function() {
     console.log('button clicked');
-    const placeId = '02d9a2b5-7dca-423f-8406-707bc76abf7e'; // Replace with the actual place ID obtained from place.id
+    const placeId = $(this).attr('data-id'); // Replace with the actual place ID obtained from place.id
 
     const apiUrl = domain + ':5001/api/v1/places/' + placeId + '/reviews'; // API endpoint URL
     const show = 'Show';
     const hide = 'Hide';
     const span = $(this); // span is the element to click show|hide
-    const htmlText = `
-          <ul>
-            <li>
-            <h3>From Bob Dylan the 27th January 2017</h3>
-            <p>Runshi is an epic host. Nothing more I can say. 5 star!</p>
-            </li>
-          </ul>`
 
     console.log('button clicked');
     if (span.text() === show) {
       // Make an AJAX request to fetch the reviews
-      $.ajax({
-        url: apiUrl,
-        method: 'GET',
-        success: function(response) {
-          // Handle the successful API response
-          // Update the HTML with the fetched reviews
-          $('.reviews').append('<div class="review">' + htmlText + response + '</div>');
+      const myReviews = $.ajax(apiUrl);
+      let myUser;
 
-          // Update span to hide
-          span.text(hide);
-      },
-      error: function() {
-        // Handle the error case if the API request fails
-        console.log('Error fetching reviews from the API.');
-      }
-    });
+      myReviews.done(function (data) {
+        for (let i = 0; i < data.length; i++) {
+          myUser = $.ajax(domain + ':5001/api/v1/users/' + data[i].user_id);
+          myUser.done(function (userData) {
+            let date = new Date(data[i].created_at);
+            date = date.getDate() + 'th ' + ' ' + date.toLocaleString('default', { month: 'long' }) + ' ' + date.getFullYear();
+            span.parent().find('ul').append('<li><h2>From ' + userData.first_name + ' ' + userData.last_name + ' the ' + date + '</h2><p>' + data[i].text + '</p></li>');
+            });
+          }
+        });
+        span.text(hide);
     } else {
       // Means u_want to hide
-      $('.review').remove();
+      $(this).parent().find('ul').empty();
       span.text(show);
     }
   });

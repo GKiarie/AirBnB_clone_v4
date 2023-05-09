@@ -132,15 +132,16 @@
     font-size: 12px;
 }
 
-.show-button {
-    position: static;
-    font-size: 18px;
-    background: transparent;
+span {
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
+span:hover {
     color: #FFFFFF;
-    height: 28px;
-    width: 100%;
-    border-style: groove;
-    border-radius: 4px;
-    top: 15%;
-    right: 30px;
+}
+
+.reviewTitles {
+    display: flex;
+    flex-direction: row;
 }
